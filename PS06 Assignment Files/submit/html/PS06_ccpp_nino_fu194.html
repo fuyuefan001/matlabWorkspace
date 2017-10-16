@@ -1,0 +1,221 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PS06_ccpp_nino_fu194</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-01"><meta name="DC.source" content="PS06_ccpp_nino_fu194.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">__________________</a></li><li><a href="#4">INITIALIZATION</a></li><li><a href="#5">__________________</a></li><li><a href="#6">CALCULATIONS</a></li><li><a href="#7">__________________</a></li><li><a href="#8">__________________</a></li><li><a href="#9">TEXT DISPLAY</a></li><li><a href="#11">__________________</a></li><li><a href="#12">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> PS06_ccpp_nino_fu194
+</pre><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">%perform linear regression to determine how each of the four conditions affects the plant&#8217;s net electrical power output</span>
+<span class="comment">%</span>
+<span class="comment">% Function Call</span>
+<span class="comment">% PS06_ccpp_nino_fu194</span>
+<span class="comment">%</span>
+<span class="comment">% Input Arguments</span>
+<span class="comment">% none</span>
+<span class="comment">%</span>
+<span class="comment">% Output Arguments</span>
+<span class="comment">% none</span>
+<span class="comment">%</span>
+<span class="comment">% Assignment Information</span>
+<span class="comment">%   Assignment:       	PS 06, Problem 1</span>
+<span class="comment">%   Author:             Yuefan Fu, fu194@purdue.edu</span>
+<span class="comment">%   Team ID:            001-05</span>
+<span class="comment">%  	Contributor: 		Name, login@purdue [repeat for each]</span>
+<span class="comment">%</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="3"></a></h2><h2>INITIALIZATION<a name="4"></a></h2><pre class="codeinput"><span class="comment">%import all data from csv file for future use</span>
+allData=importdata(<span class="string">'Data_CCPP_measurements.csv'</span>);
+temperatureRaw=allData.data(:,1);
+atmPressureRaw=allData.data(:,2);
+humidityRaw=allData.data(:,3);
+vacPressureRaw=allData.data(:,4);
+powerRaw=allData.data(:,5);
+</pre><h2>__________________<a name="5"></a></h2><h2>CALCULATIONS<a name="6"></a></h2><pre class="codeinput"><span class="comment">%calculate regression line for each model</span>
+temperatureFit=polyfit(temperatureRaw,powerRaw,1);
+atmPressureFit=polyfit(atmPressureRaw,powerRaw,1);
+humidityFit=polyfit(humidityRaw,powerRaw,1);
+vacPressureFit=polyfit(vacPressureRaw,powerRaw,1);
+<span class="comment">%calculate R^2</span>
+<span class="comment">%temperature</span>
+tempSST=sum((powerRaw-mean(powerRaw)).^2);
+tempSSE=sum((powerRaw-temperatureFit(1)*temperatureRaw-temperatureFit(2)).^2);
+r2Temp=1-tempSSE/tempSST;
+<span class="comment">%atm Pressure</span>
+atmSST=sum((powerRaw-mean(powerRaw)).^2);
+atmSSE=sum((powerRaw-atmPressureFit(1)*atmPressureRaw-atmPressureFit(2)).^2);
+r2Atm=1-atmSSE/atmSST;
+<span class="comment">%humidity</span>
+humSST=sum((powerRaw-mean(powerRaw)).^2);
+humSSE=sum((powerRaw-humidityFit(1)*humidityRaw-humidityFit(2)).^2);
+r2hum=1-humSSE/humSST;
+<span class="comment">%vacPressure</span>
+vacSST=sum((powerRaw-mean(powerRaw)).^2);
+vacSSE=sum((powerRaw-vacPressureFit(1)*vacPressureRaw-vacPressureFit(2)).^2);
+r2vac=1-vacSSE/vacSST;
+</pre><h2>__________________<a name="7"></a></h2><h2>__________________<a name="8"></a></h2><h2>TEXT DISPLAY<a name="9"></a></h2><pre class="codeinput">fprintf(<span class="string">'The equation for temperature with output is power = %.2f temperature + %.2f.\n'</span>,temperatureFit);
+fprintf(<span class="string">'The equation for Atmospheric Pressure with output is power = %.2f pressure %.2f.\n'</span>,atmPressureFit);
+fprintf(<span class="string">'The equation for Relative Humidty with output is power = %.2f humidity + %.2f.\n'</span>,humidityFit);
+fprintf(<span class="string">'The equation for Exhaust Vacuum Pressure with output is power = %.2f vacPressure + %.2f.\n'</span>,vacPressureFit);
+fprintf(<span class="string">'\ncoefficient of determination of temperature with output is %.4f\n'</span>,r2Temp);
+fprintf(<span class="string">'coefficient of determination of Atmospheric Pressur with output is %.4f\n'</span>,r2Atm);
+fprintf(<span class="string">'coefficient of determination of Relative Humidty with output is %.4f\n'</span>,r2hum);
+fprintf(<span class="string">'coefficient of determination of Exhaust Vacuum Pressure with output is %.4f\n'</span>,r2vac);
+</pre><pre class="codeoutput">The equation for temperature with output is power = -2.17 temperature + 497.03.
+The equation for Atmospheric Pressure with output is power = 1.30 pressure -862.18.
+The equation for Relative Humidty with output is power = 0.57 humidity + 415.41.
+The equation for Exhaust Vacuum Pressure with output is power = -1.23 vacPressure + 520.80.
+
+coefficient of determination of temperature with output is 0.9364
+coefficient of determination of Atmospheric Pressur with output is 0.2170
+coefficient of determination of Relative Humidty with output is 0.2831
+coefficient of determination of Exhaust Vacuum Pressure with output is 0.7577
+</pre><pre class="codeinput"><span class="keyword">end</span>
+</pre><h2>__________________<a name="11"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="12"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function PS06_ccpp_nino_fu194
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+%perform linear regression to determine how each of the four conditions affects the plant’s net electrical power output
+%
+% Function Call
+% PS06_ccpp_nino_fu194
+%
+% Input Arguments
+% none
+%
+% Output Arguments
+% none
+%
+% Assignment Information
+%   Assignment:       	PS 06, Problem 1
+%   Author:             Yuefan Fu, fu194@purdue.edu
+%   Team ID:            001-05      
+%  	Contributor: 		Name, login@purdue [repeat for each]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% INITIALIZATION
+%import all data from csv file for future use
+allData=importdata('Data_CCPP_measurements.csv');
+temperatureRaw=allData.data(:,1);
+atmPressureRaw=allData.data(:,2);
+humidityRaw=allData.data(:,3);
+vacPressureRaw=allData.data(:,4);
+powerRaw=allData.data(:,5);
+%% ____________________
+%% CALCULATIONS
+%calculate regression line for each model
+temperatureFit=polyfit(temperatureRaw,powerRaw,1);
+atmPressureFit=polyfit(atmPressureRaw,powerRaw,1);
+humidityFit=polyfit(humidityRaw,powerRaw,1);
+vacPressureFit=polyfit(vacPressureRaw,powerRaw,1);
+%calculate R^2
+%temperature
+tempSST=sum((powerRaw-mean(powerRaw)).^2);
+tempSSE=sum((powerRaw-temperatureFit(1)*temperatureRaw-temperatureFit(2)).^2);
+r2Temp=1-tempSSE/tempSST;
+%atm Pressure
+atmSST=sum((powerRaw-mean(powerRaw)).^2);
+atmSSE=sum((powerRaw-atmPressureFit(1)*atmPressureRaw-atmPressureFit(2)).^2);
+r2Atm=1-atmSSE/atmSST;
+%humidity
+humSST=sum((powerRaw-mean(powerRaw)).^2);
+humSSE=sum((powerRaw-humidityFit(1)*humidityRaw-humidityFit(2)).^2);
+r2hum=1-humSSE/humSST;
+%vacPressure
+vacSST=sum((powerRaw-mean(powerRaw)).^2);
+vacSSE=sum((powerRaw-vacPressureFit(1)*vacPressureRaw-vacPressureFit(2)).^2);
+r2vac=1-vacSSE/vacSST;
+%% ____________________
+
+
+%% ____________________
+%% TEXT DISPLAY
+fprintf('The equation for temperature with output is power = %.2f temperature + %.2f.\n',temperatureFit);
+fprintf('The equation for Atmospheric Pressure with output is power = %.2f pressure %.2f.\n',atmPressureFit);
+fprintf('The equation for Relative Humidty with output is power = %.2f humidity + %.2f.\n',humidityFit);
+fprintf('The equation for Exhaust Vacuum Pressure with output is power = %.2f vacPressure + %.2f.\n',vacPressureFit);
+fprintf('\ncoefficient of determination of temperature with output is %.4f\n',r2Temp);
+fprintf('coefficient of determination of Atmospheric Pressur with output is %.4f\n',r2Atm);
+fprintf('coefficient of determination of Relative Humidty with output is %.4f\n',r2hum);
+fprintf('coefficient of determination of Exhaust Vacuum Pressure with output is %.4f\n',r2vac);
+
+
+end
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+
+
+##### SOURCE END #####
+--></body></html>

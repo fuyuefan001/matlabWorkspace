@@ -1,0 +1,242 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PS07_distillation_fu194</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-10"><meta name="DC.source" content="PS07_distillation_fu194.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">__________________</a></li><li><a href="#4">INITIALIZATION</a></li><li><a href="#5">__________________</a></li><li><a href="#6">CALCULATIONS</a></li><li><a href="#7">__________________</a></li><li><a href="#8">FORMATTED TEXT &amp; FIGURE DISPLAYS</a></li><li><a href="#9">__________________</a></li><li><a href="#10">COMMAND WINDOW OUTPUT</a></li><li><a href="#11">__________________</a></li><li><a href="#12">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> PS07_distillation_fu194(TBP)
+</pre><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">% input a True Boiling Point of a oil, print the PDV and Distillate Compound</span>
+<span class="comment">%</span>
+<span class="comment">% Function Call</span>
+<span class="comment">% PS07_distillation_fu194(TBP)</span>
+<span class="comment">%</span>
+<span class="comment">% Input Arguments</span>
+<span class="comment">% double TBP - True Boiling Point</span>
+<span class="comment">%</span>
+<span class="comment">% Output Arguments</span>
+<span class="comment">% none</span>
+<span class="comment">%</span>
+<span class="comment">% Assignment Information</span>
+<span class="comment">%   Assignment:       	PS 07, Problem 4</span>
+<span class="comment">%   Author:             Yuefan Fu, fu194@purdue.edu</span>
+<span class="comment">%   Team ID:            001-05</span>
+<span class="comment">%  	Contributor: 		Name, login@purdue [repeat for each]</span>
+<span class="comment">%</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="3"></a></h2><h2>INITIALIZATION<a name="4"></a></h2><h2>__________________<a name="5"></a></h2><h2>CALCULATIONS<a name="6"></a></h2><pre class="codeinput"><span class="comment">%check if the input is valid</span>
+<span class="comment">%check which Distillate Compound is according to the TBP input.</span>
+<span class="keyword">if</span>(TBP&lt;0||TBP&gt;500)
+    fprintf(<span class="string">'Invalid input, make sure your input is double between 0 and 500,included\n'</span>);
+    <span class="keyword">return</span> ;
+<span class="keyword">elseif</span>(TBP&lt;20)
+    strOut=<span class="string">'nothing'</span>;
+<span class="keyword">elseif</span>(TBP&lt;150)
+    strOut=<span class="string">'Liquefied Petroleum Gas'</span>;
+<span class="keyword">elseif</span>(TBP&lt;200)
+    strOut=<span class="string">'Gasoline'</span>;
+<span class="keyword">elseif</span>(TBP&lt;300)
+    strOut=<span class="string">'Kerosene'</span>;
+<span class="keyword">elseif</span>(TBP&lt;375)
+    strOut=<span class="string">'Diesel Oil'</span>;
+<span class="keyword">elseif</span>(TBP&lt;400)
+    strOut=<span class="string">'Fuel Oil'</span>;
+<span class="keyword">else</span>
+    strOut=<span class="string">'Residuals'</span>;
+<span class="keyword">end</span>
+<span class="comment">%calculate PDV using formula provided</span>
+<span class="keyword">if</span>(TBP&lt;8.4)
+    PDV=0;
+<span class="keyword">else</span>
+    PDV=0.144*TBP-1.206;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Invalid input, make sure your input is double between 0 and 500,included
+</pre><pre class="codeoutput">Invalid input, make sure your input is double between 0 and 500,included
+</pre><h2>__________________<a name="7"></a></h2><h2>FORMATTED TEXT &amp; FIGURE DISPLAYS<a name="8"></a></h2><pre class="codeinput">fprintf(<span class="string">'Distillate Compound at TBP= %.2f is %s, PDV is %.3f\n'</span>,TBP,strOut,PDV);
+</pre><pre class="codeoutput">Distillate Compound at TBP= 5.00 is nothing, PDV is 0.000
+Distillate Compound at TBP= 10.00 is nothing, PDV is 0.234
+Distillate Compound at TBP= 50.00 is Liquefied Petroleum Gas, PDV is 5.994
+Distillate Compound at TBP= 175.00 is Gasoline, PDV is 23.994
+Distillate Compound at TBP= 250.00 is Kerosene, PDV is 34.794
+Distillate Compound at TBP= 350.00 is Diesel Oil, PDV is 49.194
+Distillate Compound at TBP= 380.00 is Fuel Oil, PDV is 53.514
+Distillate Compound at TBP= 420.00 is Residuals, PDV is 59.274
+</pre><h2>__________________<a name="9"></a></h2><h2>COMMAND WINDOW OUTPUT<a name="10"></a></h2><pre class="codeinput"><span class="comment">%PS07_distillation_fu194(-1)</span>
+<span class="comment">%Invalid input, make sure your input is double between 0 and 500,included</span>
+<span class="comment">%PS07_distillation_fu194(5)</span>
+<span class="comment">%Distillate Compound at TBP= 5.00 is nothing, PDV is 0.000</span>
+<span class="comment">%PS07_distillation_fu194(10)</span>
+<span class="comment">%Distillate Compound at TBP= 10.00 is nothing, PDV is 0.234</span>
+<span class="comment">%PS07_distillation_fu194(50)</span>
+<span class="comment">%Distillate Compound at TBP= 50.00 is Liquefied Petroleum Gas, PDV is 5.994</span>
+<span class="comment">%PS07_distillation_fu194(175)</span>
+<span class="comment">%Distillate Compound at TBP= 175.00 is Gasoline, PDV is 23.994</span>
+<span class="comment">%PS07_distillation_fu194(250)</span>
+<span class="comment">%Distillate Compound at TBP= 250.00 is Kerosene, PDV is 34.794</span>
+<span class="comment">%PS07_distillation_fu194(350)</span>
+<span class="comment">%Distillate Compound at TBP= 350.00 is Diesel Oil, PDV is 49.194</span>
+<span class="comment">%PS07_distillation_fu194(380)</span>
+<span class="comment">%Distillate Compound at TBP= 380.00 is Fuel Oil, PDV is 53.514</span>
+<span class="comment">%PS07_distillation_fu194(420)</span>
+<span class="comment">%Distillate Compound at TBP= 420.00 is Residuals, PDV is 59.274</span>
+<span class="comment">%PS07_distillation_fu194(600)</span>
+<span class="comment">%Invalid input, make sure your input is double between 0 and 500,included</span>
+</pre><h2>__________________<a name="11"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="12"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function PS07_distillation_fu194(TBP)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+% input a True Boiling Point of a oil, print the PDV and Distillate Compound
+%
+% Function Call
+% PS07_distillation_fu194(TBP)
+%
+% Input Arguments
+% double TBP - True Boiling Point
+%
+% Output Arguments
+% none
+%
+% Assignment Information
+%   Assignment:       	PS 07, Problem 4
+%   Author:             Yuefan Fu, fu194@purdue.edu
+%   Team ID:            001-05      
+%  	Contributor: 		Name, login@purdue [repeat for each]
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% INITIALIZATION
+
+
+%% ____________________
+%% CALCULATIONS
+%check if the input is valid
+%check which Distillate Compound is according to the TBP input.
+if(TBP<0||TBP>500)
+    fprintf('Invalid input, make sure your input is double between 0 and 500,included\n');
+    return ;
+elseif(TBP<20)
+    strOut='nothing';
+elseif(TBP<150)
+    strOut='Liquefied Petroleum Gas';
+elseif(TBP<200)
+    strOut='Gasoline';
+elseif(TBP<300)
+    strOut='Kerosene';
+elseif(TBP<375)
+    strOut='Diesel Oil';
+elseif(TBP<400)
+    strOut='Fuel Oil';
+else
+    strOut='Residuals';
+end
+%calculate PDV using formula provided
+if(TBP<8.4)
+    PDV=0;
+else
+    PDV=0.144*TBP-1.206;
+end
+
+%% ____________________
+%% FORMATTED TEXT & FIGURE DISPLAYS
+fprintf('Distillate Compound at TBP= %.2f is %s, PDV is %.3f\n',TBP,strOut,PDV);
+
+%% ____________________
+%% COMMAND WINDOW OUTPUT
+%PS07_distillation_fu194(-1)
+%Invalid input, make sure your input is double between 0 and 500,included
+%PS07_distillation_fu194(5)
+%Distillate Compound at TBP= 5.00 is nothing, PDV is 0.000
+%PS07_distillation_fu194(10)
+%Distillate Compound at TBP= 10.00 is nothing, PDV is 0.234
+%PS07_distillation_fu194(50)
+%Distillate Compound at TBP= 50.00 is Liquefied Petroleum Gas, PDV is 5.994
+%PS07_distillation_fu194(175)
+%Distillate Compound at TBP= 175.00 is Gasoline, PDV is 23.994
+%PS07_distillation_fu194(250)
+%Distillate Compound at TBP= 250.00 is Kerosene, PDV is 34.794
+%PS07_distillation_fu194(350)
+%Distillate Compound at TBP= 350.00 is Diesel Oil, PDV is 49.194
+%PS07_distillation_fu194(380)
+%Distillate Compound at TBP= 380.00 is Fuel Oil, PDV is 53.514
+%PS07_distillation_fu194(420)
+%Distillate Compound at TBP= 420.00 is Residuals, PDV is 59.274
+%PS07_distillation_fu194(600)
+%Invalid input, make sure your input is double between 0 and 500,included
+
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,8 @@
+Cumulative Number of Units Manufactured	Illinois Plant Direct Labor (Hours/Unit)	Nebraska Plant Direct Labor (Hours/Unit)
+1	60	75
+2	45	54
+5	24	30
+10	21	17
+12	19	15
+15	16	13
+20	14	12

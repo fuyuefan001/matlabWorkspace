@@ -1,0 +1,208 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PS03_flightdelays_fu194_gelman</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-11"><meta name="DC.source" content="PS03_flightdelays_fu194_gelman.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">__________________</a></li><li><a href="#3">INITIALIZATION</a></li><li><a href="#4">__________________</a></li><li><a href="#5">CALCULATIONS</a></li><li><a href="#6">__________________</a></li><li><a href="#7">FORMATTED TEXT DISPLAYS</a></li><li><a href="#8">__________________</a></li><li><a href="#9">ANALYSIS</a></li><li><a href="#10">-- Q1</a></li><li><a href="#11">__________________</a></li><li><a href="#12">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">%  	...</span>
+<span class="comment">%</span>
+<span class="comment">% Assigment Information</span>
+<span class="comment">%   Assignment:     PS 03, Problem 1</span>
+<span class="comment">%   Author:         Yuefan Fu, fu194@purdue.edu</span>
+<span class="comment">%   Team ID:        005</span>
+<span class="comment">%  	Contributor:    Name, login@purdue [repeat for each]</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="2"></a></h2><h2>INITIALIZATION<a name="3"></a></h2><pre class="codeinput"><span class="comment">%import data</span>
+allData =importdata(<span class="string">'Data_flight_times.csv'</span>);
+</pre><h2>__________________<a name="4"></a></h2><h2>CALCULATIONS<a name="5"></a></h2><pre class="codeinput"><span class="comment">%for q1</span>
+
+onTime=allData.data(find(allData.data&lt;=5));
+numOnTime = size(onTime);
+AOS = (find(allData.data&gt;5&amp;allData.data&lt;=15));
+numAOS=size(AOS);
+delay=(find(allData.data&gt;15));
+numDelay=size(delay);
+<span class="comment">%find index range of each airport</span>
+indexBOS=find( strcmp(allData.textdata,<span class="string">'BOS'</span>))-1;
+indexMSP=find( strcmp(allData.textdata,<span class="string">'MSP'</span>))-1;
+indexMCO=find( strcmp(allData.textdata,<span class="string">'MCO'</span>))-1;
+indexLAS=find( strcmp(allData.textdata,<span class="string">'LAS'</span>))-1;
+<span class="comment">%find average of delay time in each airports</span>
+<span class="comment">%avgBOS=mean(allData.data(delay(find(delay&gt;=min(indexBOS)&amp;delay&lt;=max(indexBOS)))));</span>
+<span class="comment">%avgMSP=mean(allData.data(delay(find(delay&gt;=min(indexMSP)&amp;delay&lt;=max(indexMSP)))));</span>
+<span class="comment">%avgMCO=mean(allData.data(delay(find(delay&gt;=min(indexMCO)&amp;delay&lt;=max(indexMCO)))));</span>
+<span class="comment">%avgLAS=mean(allData.data(delay(find(delay&gt;=min(indexLAS)&amp;delay&lt;=max(indexLAS)))));</span>
+avgBOS=mean(allData.data(indexBOS));
+avgMSP=mean(allData.data(indexMSP));
+avgMCO=mean(allData.data(indexMCO));
+avgLAS=mean(allData.data(indexLAS));
+<span class="comment">%find max,min</span>
+maxDelay=max([avgBOS,avgMSP,avgMCO,avgLAS]);
+minDelay=min([avgBOS,avgMSP,avgMCO,avgLAS]);
+<span class="comment">%find index fo EOS</span>
+indexEOS=find(allData.data&gt;90|allData.data&lt;-15);
+<span class="comment">%find number of EOS in each airport</span>
+numEOSBOS=size(indexEOS(find(indexEOS&gt;=min(indexBOS)&amp;indexEOS&lt;=max(indexBOS))));
+numEOSMSP=size(indexEOS(find(indexEOS&gt;=min(indexMSP)&amp;indexEOS&lt;=max(indexMSP))));
+numEOSMCO=size(indexEOS(find(indexEOS&gt;=min(indexMCO)&amp;indexEOS&lt;=max(indexMCO))));
+numEOSLAS=size(indexEOS(find(indexEOS&gt;=min(indexLAS)&amp;indexEOS&lt;=max(indexLAS))));
+<span class="comment">%for q2</span>
+</pre><h2>__________________<a name="6"></a></h2><h2>FORMATTED TEXT DISPLAYS<a name="7"></a></h2><pre class="codeinput">fprintf(<span class="string">'Ans for questionA:\nThe total number of on-time is %d, acceptably off-schedule is %d, and delayed flights is %d\n\n'</span>,numOnTime(1,1),numAOS(1,1),numDelay(1,1));
+fprintf(<span class="string">'Ans for questionB:\nBOS airport has the largest average departure delay,which is %.2f and MSP has the smallest average departuredelay,which is %.2f\n\n'</span>,maxDelay,minDelay);
+fprintf(<span class="string">'Ans for questionC:\nThe number of excessively off-schedule departures for BOS is %d\nthe number of excessively off-schedule departures for MSP is %d\nthe number of excessively off-schedule departures for MCO is %d\nthe number of excessively off-schedule departures for LAS is %d\n'</span>,numEOSBOS(1),numEOSMSP(1),numEOSMCO(1),numEOSLAS(1));
+</pre><pre class="codeoutput">Ans for questionA:
+The total number of on-time is 371, acceptably off-schedule is 39, and delayed flights is 90
+
+Ans for questionB:
+BOS airport has the largest average departure delay,which is 12.10 and MSP has the smallest average departuredelay,which is 6.17
+
+Ans for questionC:
+The number of excessively off-schedule departures for BOS is 7
+the number of excessively off-schedule departures for MSP is 2
+the number of excessively off-schedule departures for MCO is 6
+the number of excessively off-schedule departures for LAS is 5
+</pre><h2>__________________<a name="8"></a></h2><h2>ANALYSIS<a name="9"></a></h2><h2>-- Q1<a name="10"></a></h2><pre class="codeinput"><span class="comment">%The average annual delayed percentage for each airport was about 20%, while</span>
+<span class="comment">%for our flight system, the annual delayed percentage was about 18%, meaning</span>
+<span class="comment">%that our flight system was more efficient than that of the USDT.</span>
+</pre><h2>__________________<a name="11"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="12"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+%  	... 
+%
+% Assigment Information
+%   Assignment:     PS 03, Problem 1
+%   Author:         Yuefan Fu, fu194@purdue.edu
+%   Team ID:        005
+%  	Contributor:    Name, login@purdue [repeat for each]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% INITIALIZATION
+%import data
+allData =importdata('Data_flight_times.csv');
+
+%% ____________________
+%% CALCULATIONS
+%for q1
+
+onTime=allData.data(find(allData.data<=5));
+numOnTime = size(onTime);
+AOS = (find(allData.data>5&allData.data<=15));
+numAOS=size(AOS);
+delay=(find(allData.data>15));
+numDelay=size(delay);
+%find index range of each airport
+indexBOS=find( strcmp(allData.textdata,'BOS'))-1;
+indexMSP=find( strcmp(allData.textdata,'MSP'))-1;
+indexMCO=find( strcmp(allData.textdata,'MCO'))-1;
+indexLAS=find( strcmp(allData.textdata,'LAS'))-1;
+%find average of delay time in each airports
+%avgBOS=mean(allData.data(delay(find(delay>=min(indexBOS)&delay<=max(indexBOS)))));
+%avgMSP=mean(allData.data(delay(find(delay>=min(indexMSP)&delay<=max(indexMSP)))));
+%avgMCO=mean(allData.data(delay(find(delay>=min(indexMCO)&delay<=max(indexMCO)))));
+%avgLAS=mean(allData.data(delay(find(delay>=min(indexLAS)&delay<=max(indexLAS)))));
+avgBOS=mean(allData.data(indexBOS));
+avgMSP=mean(allData.data(indexMSP));
+avgMCO=mean(allData.data(indexMCO));
+avgLAS=mean(allData.data(indexLAS));
+%find max,min
+maxDelay=max([avgBOS,avgMSP,avgMCO,avgLAS]);
+minDelay=min([avgBOS,avgMSP,avgMCO,avgLAS]);
+%find index fo EOS
+indexEOS=find(allData.data>90|allData.data<-15);
+%find number of EOS in each airport
+numEOSBOS=size(indexEOS(find(indexEOS>=min(indexBOS)&indexEOS<=max(indexBOS))));
+numEOSMSP=size(indexEOS(find(indexEOS>=min(indexMSP)&indexEOS<=max(indexMSP))));
+numEOSMCO=size(indexEOS(find(indexEOS>=min(indexMCO)&indexEOS<=max(indexMCO))));
+numEOSLAS=size(indexEOS(find(indexEOS>=min(indexLAS)&indexEOS<=max(indexLAS))));
+%for q2
+
+%% ____________________
+%% FORMATTED TEXT DISPLAYS
+fprintf('Ans for questionA:\nThe total number of on-time is %d, acceptably off-schedule is %d, and delayed flights is %d\n\n',numOnTime(1,1),numAOS(1,1),numDelay(1,1));
+fprintf('Ans for questionB:\nBOS airport has the largest average departure delay,which is %.2f and MSP has the smallest average departuredelay,which is %.2f\n\n',maxDelay,minDelay);
+fprintf('Ans for questionC:\nThe number of excessively off-schedule departures for BOS is %d\nthe number of excessively off-schedule departures for MSP is %d\nthe number of excessively off-schedule departures for MCO is %d\nthe number of excessively off-schedule departures for LAS is %d\n',numEOSBOS(1),numEOSMSP(1),numEOSMCO(1),numEOSLAS(1));
+%% ____________________
+%% ANALYSIS
+
+%% REPLACE_WITH_DASH_DASH Q1
+%The average annual delayed percentage for each airport was about 20%, while
+%for our flight system, the annual delayed percentage was about 18%, meaning 
+%that our flight system was more efficient than that of the USDT.
+
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+%
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,499 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Untitled</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-06"><meta name="DC.source" content="Untitled.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">__________________</a></li><li><a href="#3">INITIALIZATION</a></li><li><a href="#4">__________________</a></li><li><a href="#5">GM CORN VARIETIES PLOT</a></li><li><a href="#6">__________________</a></li><li><a href="#7">CORN PRODUCTION PLOT</a></li><li><a href="#8">__________________</a></li><li><a href="#9">ANALYSIS</a></li><li><a href="#10">-- Q1</a></li><li><a href="#11">-- Q2</a></li><li><a href="#12">-- Q3</a></li><li><a href="#13">-- Q4</a></li><li><a href="#14">__________________</a></li><li><a href="#15">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">%  	...</span>
+<span class="comment">%</span>
+<span class="comment">% Assigment Information</span>
+<span class="comment">%   Assignment:  	    PS 02, Problem 03</span>
+<span class="comment">%   Author:             Tian Xia, xia80@purdue.edu</span>
+<span class="comment">%   Team ID:            003-02</span>
+<span class="comment">%   Paired Programmer:</span>
+<span class="comment">%   Contributor:        Tian Xia, xia80@purdue</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="2"></a></h2><h2>INITIALIZATION<a name="3"></a></h2><pre class="codeinput">corn = csvread(<span class="string">'Data_Indiana_GMcorn.csv'</span>,5,0)
+Year = corn(:,1)
+TotalGM = corn(:,2)
+BT = corn(:,3)
+HT = corn(:,4)
+GeneStacked= corn(:,5)
+Harvestcornares = corn(:,6)
+Harvestcornbushels = corn(:,7)
+Cornproductionyield = corn(:,8)
+Cornproductionvalue = corn(:,9)
+</pre><pre class="codeoutput">
+corn =
+
+   1.0e+09 *
+
+  Columns 1 through 7
+
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0055    0.9463
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0055    0.8220
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0058    1.0848
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0058    1.0319
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0060    0.5970
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0057    0.8395
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0057    0.8980
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0055    0.9337
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0055    0.8736
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0064    0.9810
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0054    0.8447
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0058    0.8886
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0055    0.9290
+    0.0000    0.0000    0.0000    0.0000    0.0000    0.0054    0.7869
+    0.0000    0.0000    0.0000    0.0000         0    0.0052    0.6316
+    0.0000    0.0000    0.0000    0.0000         0    0.0057    0.8845
+    0.0000    0.0000    0.0000    0.0000         0    0.0056    0.8103
+
+  Columns 8 through 9
+
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+    0.0000    0.0000
+
+
+Year =
+
+        2016
+        2015
+        2014
+        2013
+        2012
+        2011
+        2010
+        2009
+        2008
+        2007
+        2006
+        2005
+        2004
+        2003
+        2002
+        2001
+        2000
+
+
+TotalGM =
+
+    86
+    88
+    88
+    85
+    84
+    85
+    83
+    79
+    78
+    59
+    40
+    26
+    21
+    16
+    13
+    12
+    11
+
+
+BT =
+
+     2
+     4
+     2
+     2
+     9
+     7
+     1
+     7
+     7
+    12
+    13
+    11
+    11
+     8
+     7
+     6
+     7
+
+
+HT =
+
+     9
+     8
+     8
+    10
+    15
+    22
+    20
+    17
+    16
+    17
+    15
+    11
+     8
+     7
+     6
+     6
+     4
+
+
+GeneStacked =
+
+    75
+    76
+    78
+    73
+    60
+    56
+    56
+    55
+    55
+    30
+    12
+     4
+     2
+     1
+     0
+     0
+     0
+
+
+Harvestcornares =
+
+     5470000
+     5480000
+     5770000
+     5830000
+     6030000
+     5750000
+     5720000
+     5460000
+     5460000
+     6370000
+     5380000
+     5770000
+     5530000
+     5390000
+     5220000
+     5670000
+     5550000
+
+
+Harvestcornbushels =
+
+   1.0e+09 *
+
+    0.9463
+    0.8220
+    1.0848
+    1.0319
+    0.5970
+    0.8395
+    0.8980
+    0.9337
+    0.8736
+    0.9810
+    0.8447
+    0.8886
+    0.9290
+    0.7869
+    0.6316
+    0.8845
+    0.8103
+
+
+Cornproductionyield =
+
+   173
+   150
+   188
+   177
+    99
+   146
+   157
+   171
+   160
+   154
+   157
+   154
+   168
+   146
+   121
+   156
+   146
+
+
+Cornproductionvalue =
+
+   1.0e+03 *
+
+    3.3594
+    3.2222
+    4.0679
+    4.6126
+    4.3161
+    5.2972
+    4.8315
+    3.4172
+    3.5818
+    4.3065
+    2.6776
+    1.7772
+    1.8488
+    1.9910
+    1.5222
+    1.7514
+    1.5396
+
+</pre><h2>__________________<a name="4"></a></h2><h2>GM CORN VARIETIES PLOT<a name="5"></a></h2><pre class="codeinput">plot(Year, TotalGM,<span class="string">'-or'</span>)
+title(<span class="string">'Percentage of Corn over Time'</span>)
+xlabel(<span class="string">'Years'</span>)
+ylabel(<span class="string">'Percentage of Corn (%)'</span>)
+grid <span class="string">on</span>
+hold <span class="string">on</span>
+plot(Year, BT,<span class="string">'-sb'</span>)
+title(<span class="string">'Percentage of Corn over Time'</span>)
+xlabel(<span class="string">'Years'</span>)
+ylabel(<span class="string">'Percentage of Corn (%)'</span>)
+hold <span class="string">on</span>
+plot(Year, HT,<span class="string">'-oy'</span>)
+title(<span class="string">'Percentage of Corn over Time'</span>)
+xlabel(<span class="string">'Years'</span>)
+ylabel(<span class="string">'Percentage of Corn (%)'</span>)
+hold <span class="string">on</span>
+plot(Year, GeneStacked,<span class="string">'-sg'</span>)
+title(<span class="string">'Percentage of Corn over Time'</span>)
+xlabel(<span class="string">'Years'</span>)
+ylabel(<span class="string">'Percentage of Corn (%)'</span>)
+hold <span class="string">off</span>
+legend(<span class="string">'TotalGene'</span>,<span class="string">'BT'</span>,<span class="string">'HT'</span>,<span class="string">'GeneStacked'</span>,<span class="string">'location'</span>,[0.27 0.82 0 0])
+figure
+</pre><img vspace="5" hspace="5" src="Untitled_01.png" style="width:560px;height:420px;" alt=""> <img vspace="5" hspace="5" src="Untitled_02.png" style="width:560px;height:420px;" alt=""> <h2>__________________<a name="6"></a></h2><h2>CORN PRODUCTION PLOT<a name="7"></a></h2><pre class="codeinput">set(gcf, <span class="string">'units'</span>,<span class="string">'centimeters'</span>,<span class="string">'position'</span>,[0 0 20 20])
+subplot(2,2,1)
+plot(Year,Cornproductionyield,<span class="string">'-or'</span>)
+title(<span class="string">'Corn Yield over Time'</span>)
+xlabel(<span class="string">'Years'</span>)
+ylabel(<span class="string">'Corn Production Yield (bushels/acre)'</span>)
+grid <span class="string">on</span>
+
+subplot(2,2,2)
+plot(TotalGM,Cornproductionyield,<span class="string">'-sb'</span>)
+title(<span class="string">' Percentage of GM vs yield'</span>)
+xlabel(<span class="string">'Percentage of GM'</span>)
+ylabel(<span class="string">'Corn Production Yield (bushels/acre'</span>)
+grid <span class="string">on</span>
+
+subplot(2,2,3)
+plot(Year,Cornproductionvalue,<span class="string">'-og'</span>)
+title(<span class="string">'Corn Production Value over Time'</span>)
+xlabel(<span class="string">'Years'</span>)
+ylabel(<span class="string">'Corn Production Value (million USD)'</span>)
+grid <span class="string">on</span>
+
+subplot(2,2,4)
+plot(TotalGM,Cornproductionvalue,<span class="string">'-sr'</span>)
+title(<span class="string">'Percentage of GM vs Indiana&#25263; corn value'</span>)
+xlabel(<span class="string">'Percentage of GM'</span>)
+ylabel(<span class="string">'Corn Production Value (million USD)'</span>)
+grid <span class="string">on</span>
+</pre><img vspace="5" hspace="5" src="Untitled_03.png" style="width:756px;height:756px;" alt=""> <h2>__________________<a name="8"></a></h2><h2>ANALYSIS<a name="9"></a></h2><h2>-- Q1<a name="10"></a></h2><p>As can be seen from the figure 1, percentage of TotalGene and GeneStacked increases dramatically, while that of the BT and HT increse slightlt and follow up with decrease.</p><h2>-- Q2<a name="11"></a></h2><p>Subplot B might be the best one to represent the Figure.</p><h2>-- Q3<a name="12"></a></h2><pre>As the time goes by, the production value increase as the percentage of TotalGene
+increase. Due to Figure 1, we obtain that the percentage of BT and HT
+decrease slightly while that of TotalGene and GeneStacked increase significantly. It shows that
+the quality of corn increase overall, resulting in the increase in total value.</pre><h2>-- Q4<a name="13"></a></h2><p>I would recommend the farm company to transit GeneStacked corn. Because the percentage of this type of corn increases dramatically from 2000 to 2016. With this type of corn, the benefits the farm obtain will be the largest.</p><h2>__________________<a name="14"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="15"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+%  	...
+%
+% Assigment Information
+%   Assignment:  	    PS 02, Problem 03
+%   Author:             Tian Xia, xia80@purdue.edu
+%   Team ID:            003-02
+%   Paired Programmer:  
+%   Contributor:        Tian Xia, xia80@purdue 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% INITIALIZATION
+corn = csvread('Data_Indiana_GMcorn.csv',5,0)
+Year = corn(:,1)    
+TotalGM = corn(:,2)
+BT = corn(:,3)
+HT = corn(:,4)
+GeneStacked= corn(:,5)
+Harvestcornares = corn(:,6)
+Harvestcornbushels = corn(:,7)
+Cornproductionyield = corn(:,8)
+Cornproductionvalue = corn(:,9)
+
+%% ____________________
+%% GM CORN VARIETIES PLOT
+plot(Year, TotalGM,'-or')
+title('Percentage of Corn over Time')
+xlabel('Years')
+ylabel('Percentage of Corn (%)')
+grid on
+hold on
+plot(Year, BT,'-sb')
+title('Percentage of Corn over Time')
+xlabel('Years')
+ylabel('Percentage of Corn (%)')
+hold on
+plot(Year, HT,'-oy')
+title('Percentage of Corn over Time')
+xlabel('Years')
+ylabel('Percentage of Corn (%)')
+hold on
+plot(Year, GeneStacked,'-sg')
+title('Percentage of Corn over Time')
+xlabel('Years')
+ylabel('Percentage of Corn (%)')
+hold off
+legend('TotalGene','BT','HT','GeneStacked','location',[0.27 0.82 0 0])
+figure
+
+%% ____________________
+%% CORN PRODUCTION PLOT
+set(gcf, 'units','centimeters','position',[0 0 20 20])
+subplot(2,2,1)
+plot(Year,Cornproductionyield,'-or')
+title('Corn Yield over Time')
+xlabel('Years')
+ylabel('Corn Production Yield (bushels/acre)')
+grid on
+
+subplot(2,2,2)
+plot(TotalGM,Cornproductionyield,'-sb')
+title(' Percentage of GM vs yield')
+xlabel('Percentage of GM')
+ylabel('Corn Production Yield (bushels/acre')
+grid on
+
+subplot(2,2,3)
+plot(Year,Cornproductionvalue,'-og')
+title('Corn Production Value over Time')
+xlabel('Years')
+ylabel('Corn Production Value (million USD)')
+grid on
+
+subplot(2,2,4)
+plot(TotalGM,Cornproductionvalue,'-sr')
+title('Percentage of GM vs Indiana抯 corn value')
+xlabel('Percentage of GM')
+ylabel('Corn Production Value (million USD)')
+grid on
+
+
+%% ____________________
+%% ANALYSIS
+
+%% REPLACE_WITH_DASH_DASH Q1
+% As can be seen from the figure 1, percentage of TotalGene and GeneStacked
+% increases dramatically, while that of the BT and HT increse slightlt and
+% follow up with decrease.
+
+%% REPLACE_WITH_DASH_DASH Q2
+% Subplot B might be the best one to represent the Figure.
+%% REPLACE_WITH_DASH_DASH Q3
+%  As the time goes by, the production value increase as the percentage of TotalGene
+% increase. Due to Figure 1, we obtain that the percentage of BT and HT
+% decrease slightly while that of TotalGene and GeneStacked increase significantly. It shows that
+% the quality of corn increase overall, resulting in the increase in total value.
+
+%% REPLACE_WITH_DASH_DASH Q4
+% I would recommend the farm company to transit GeneStacked corn. Because
+% the percentage of this type of corn increases dramatically from 2000 to
+% 2016. With this type of corn, the benefits the farm obtain will be the
+% largest.
+
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,199 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PS02_INcorn_fu194</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-06"><meta name="DC.source" content="PS02_INcorn_fu194.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">__________________</a></li><li><a href="#3">INITIALIZATION</a></li><li><a href="#4">__________________</a></li><li><a href="#5">GM CORN VARIETIES PLOT</a></li><li><a href="#6">__________________</a></li><li><a href="#7">CORN PRODUCTION PLOT</a></li><li><a href="#8">__________________</a></li><li><a href="#9">ANALYSIS</a></li><li><a href="#10">-- Q1</a></li><li><a href="#11">-- Q2</a></li><li><a href="#12">-- Q3</a></li><li><a href="#13">-- Q4</a></li><li><a href="#14">__________________</a></li><li><a href="#15">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">%  	...</span>
+<span class="comment">%</span>
+<span class="comment">% Assigment Information</span>
+<span class="comment">%   Assignment:  	    PS #02, Problem #3</span>
+<span class="comment">%   Author:             Yuefan Fu, fu194@purdue.edu</span>
+<span class="comment">%   Team ID:            001</span>
+<span class="comment">%   Paired Programmer:  Yidi Du, du153@purdue.edu</span>
+<span class="comment">%   Contributor:        Name, login@purdue [repeat for each]</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="2"></a></h2><h2>INITIALIZATION<a name="3"></a></h2><pre class="codeinput">data=csvread(<span class="string">'Data_Indiana_GMcorn.csv'</span>,5,0);
+year=data(:,1);
+totalGmCorn=data(:,2);
+bt=data(:,3);
+ht=data(:,4);
+stackedGene=data(:,5);
+Acre=data(:,6);
+Bushel=data(:,7);
+Yield=data(:,8);
+Value=data(:,9);
+</pre><h2>__________________<a name="4"></a></h2><h2>GM CORN VARIETIES PLOT<a name="5"></a></h2><pre class="codeinput">plot(year,bt,<span class="string">'o'</span>,year,ht,<span class="string">'^'</span>,year,stackedGene,<span class="string">'x'</span>,year,totalGmCorn,<span class="string">'v'</span>);
+title(<span class="string">'percangate of Gm corn'</span>);
+xlabel(<span class="string">'Time(year)'</span>);
+ylabel(<span class="string">'percnetage of each condition'</span>);
+</pre><img vspace="5" hspace="5" src="PS02_INcorn_fu194_01.png" style="width:560px;height:420px;" alt=""> <h2>__________________<a name="6"></a></h2><h2>CORN PRODUCTION PLOT<a name="7"></a></h2><pre class="codeinput">subplot(2,2,1);
+plot(year,Yield,<span class="string">'b^'</span>);
+title(<span class="string">'corn yield over time.'</span>);
+xlabel(<span class="string">'Time(year)'</span>);
+ylabel(<span class="string">'corn yield'</span>);
+subplot(2,2,3);
+plot(year,Value,<span class="string">'ro'</span>);
+title(<span class="string">'corn value over time.'</span>);
+xlabel(<span class="string">'Time(year)'</span>);
+ylabel(<span class="string">'corn value'</span>);
+subplot(2,2,2);
+plot(totalGmCorn,Yield,<span class="string">'cv'</span>);
+title(<span class="string">'percentage of GM plantings affects corn yield.'</span>);
+xlabel(<span class="string">'percentage of GM plantings'</span>);
+ylabel(<span class="string">'corn yield'</span>);
+subplot(2,2,4);
+plot(totalGmCorn,Value,<span class="string">'yx'</span>);
+title(<span class="string">'percentage of GM plantings affects corn value.'</span>);
+xlabel(<span class="string">'Tpercentage of GM plantings'</span>);
+ylabel(<span class="string">'corn value'</span>);
+</pre><img vspace="5" hspace="5" src="PS02_INcorn_fu194_02.png" style="width:560px;height:420px;" alt=""> <h2>__________________<a name="8"></a></h2><h2>ANALYSIS<a name="9"></a></h2><h2>-- Q1<a name="10"></a></h2><p>during 2000to 2008, it increase with acceleration. from 20080 to 2016, it increase slower and vary at about 80% to 90%</p><h2>-- Q2<a name="11"></a></h2><p>subplot B</p><h2>-- Q3<a name="12"></a></h2><p>the corn value reach the max at 2010, and then decrease, so people plant stop increase the production of corn</p><h2>-- Q4<a name="13"></a></h2><p>grow more GM corn because accoring to subplot D, total value of corn increase with the percentage of GM corn increase</p><h2>__________________<a name="14"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="15"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+%  	...
+%
+% Assigment Information
+%   Assignment:  	    PS #02, Problem #3
+%   Author:             Yuefan Fu, fu194@purdue.edu
+%   Team ID:            001
+%   Paired Programmer:  Yidi Du, du153@purdue.edu
+%   Contributor:        Name, login@purdue [repeat for each]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% INITIALIZATION
+data=csvread('Data_Indiana_GMcorn.csv',5,0);
+year=data(:,1);
+totalGmCorn=data(:,2);
+bt=data(:,3);
+ht=data(:,4);
+stackedGene=data(:,5);
+Acre=data(:,6);
+Bushel=data(:,7);
+Yield=data(:,8);
+Value=data(:,9);
+
+
+%% ____________________
+%% GM CORN VARIETIES PLOT
+plot(year,bt,'o',year,ht,'^',year,stackedGene,'x',year,totalGmCorn,'v');
+title('percangate of Gm corn');
+xlabel('Time(year)');
+ylabel('percnetage of each condition');
+%% ____________________
+%% CORN PRODUCTION PLOT
+subplot(2,2,1);
+plot(year,Yield,'b^');
+title('corn yield over time.');
+xlabel('Time(year)');
+ylabel('corn yield');
+subplot(2,2,3);
+plot(year,Value,'ro');
+title('corn value over time.');
+xlabel('Time(year)');
+ylabel('corn value');
+subplot(2,2,2);
+plot(totalGmCorn,Yield,'cv');
+title('percentage of GM plantings affects corn yield.');
+xlabel('percentage of GM plantings');
+ylabel('corn yield');
+subplot(2,2,4);
+plot(totalGmCorn,Value,'yx');
+title('percentage of GM plantings affects corn value.');
+xlabel('Tpercentage of GM plantings');
+ylabel('corn value');
+
+%% ____________________
+%% ANALYSIS
+
+%% REPLACE_WITH_DASH_DASH Q1
+% during 2000to 2008, it increase with acceleration. from 20080 to 2016, it
+% increase slower and vary at about 80% to 90%
+% 
+
+%% REPLACE_WITH_DASH_DASH Q2
+% subplot B
+
+%% REPLACE_WITH_DASH_DASH Q3
+% the corn value reach the max at 2010, and then decrease, so people plant
+% stop increase the production of corn
+
+%% REPLACE_WITH_DASH_DASH Q4
+% grow more GM corn because accoring to subplot D, total value of corn
+% increase with the percentage of GM corn increase
+
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+##### SOURCE END #####
+--></body></html>

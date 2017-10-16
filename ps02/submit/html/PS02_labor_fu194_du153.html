@@ -1,0 +1,256 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PS02_labor_fu194_du153</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-09-06"><meta name="DC.source" content="PS02_labor_fu194_du153.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">__________________</a></li><li><a href="#3">INITIALIZATION</a></li><li><a href="#4">__________________</a></li><li><a href="#5">CALCULATIONS</a></li><li><a href="#6">__________________</a></li><li><a href="#7">MODEL SMOOTHNESS CHECK</a></li><li><a href="#8">__________________</a></li><li><a href="#9">FORMATTED FIGURES</a></li><li><a href="#10">__________________</a></li><li><a href="#11">ANALYSIS</a></li><li><a href="#12">-- Q1</a></li><li><a href="#13">-- Q2</a></li><li><a href="#14">__________________</a></li><li><a href="#15">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">%  	...</span>
+<span class="comment">%</span>
+<span class="comment">% Assigment Information</span>
+<span class="comment">%   Assignment:     PS 02, Problem #2</span>
+<span class="comment">%   Author:         Yuefan Fu, fu194@purdue.edu</span>
+<span class="comment">%   Team ID:        001</span>
+<span class="comment">%  	Contributor:</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="2"></a></h2><h2>INITIALIZATION<a name="3"></a></h2><pre class="codeinput">[a,b,c] = textread(<span class="string">'Data_direct_labor_costs.txt'</span>,<span class="string">'%d%d%d'</span>,<span class="string">'headerlines'</span>,1)
+A=[a,b,c]
+</pre><pre class="codeoutput">
+a =
+
+     1
+     2
+     5
+    10
+    12
+    15
+    20
+
+
+b =
+
+    60
+    45
+    24
+    21
+    19
+    16
+    14
+
+
+c =
+
+    75
+    54
+    30
+    17
+    15
+    13
+    12
+
+
+A =
+
+     1    60    75
+     2    45    54
+     5    24    30
+    10    21    17
+    12    19    15
+    15    16    13
+    20    14    12
+
+</pre><h2>__________________<a name="4"></a></h2><h2>CALCULATIONS<a name="5"></a></h2><pre class="codeinput">Model1 = 61 * a.^(-0.5)
+Model2 = 75 * a.^(-0.62)
+</pre><pre class="codeoutput">
+Model1 =
+
+   61.0000
+   43.1335
+   27.2800
+   19.2899
+   17.6092
+   15.7501
+   13.6400
+
+
+Model2 =
+
+   75.0000
+   48.8003
+   27.6503
+   17.9912
+   16.0683
+   13.9922
+   11.7064
+
+</pre><h2>__________________<a name="6"></a></h2><h2>MODEL SMOOTHNESS CHECK<a name="7"></a></h2><pre class="codeinput">smoothA = [1:20]
+smoothM1=61*smoothA.^(-0.5)
+plot(smoothA,smoothM1);
+title(<span class="string">'Direct labor hours for the Illinois plant'</span>)
+xlabel(<span class="string">'Cumulative Number of Units'</span>)
+ylabel( <span class="string">'Manufactured Illinois Plant Direct Labor (Hours/Unit)'</span>)
+grid <span class="string">on</span>
+</pre><pre class="codeoutput">
+smoothA =
+
+  1 &#33267; 13 &#21015;
+
+     1     2     3     4     5     6     7     8     9    10    11    12    13
+
+  14 &#33267; 20 &#21015;
+
+    14    15    16    17    18    19    20
+
+
+smoothM1 =
+
+  1 &#33267; 7 &#21015;
+
+   61.0000   43.1335   35.2184   30.5000   27.2800   24.9031   23.0558
+
+  8 &#33267; 14 &#21015;
+
+   21.5668   20.3333   19.2899   18.3922   17.6092   16.9184   16.3029
+
+  15 &#33267; 20 &#21015;
+
+   15.7501   15.2500   14.7947   14.3778   13.9944   13.6400
+
+</pre><img vspace="5" hspace="5" src="PS02_labor_fu194_du153_01.png" style="width:560px;height:420px;" alt=""> <h2>__________________<a name="8"></a></h2><h2>FORMATTED FIGURES<a name="9"></a></h2><pre class="codeinput">smoothM2=75*smoothA.^(-0.62);
+plot(a,b,<span class="string">'^'</span>,a,c,<span class="string">'o'</span>,smoothA,smoothM1,smoothA,smoothM2);
+title(<span class="string">'Direct labor hours for the Illinois plant'</span>)
+xlabel(<span class="string">'Cumulative Number of Units'</span>)
+ylabel( <span class="string">'Manufactured Plant Direct Labor (Hours/Unit)'</span>)
+legend(<span class="string">'IL actual'</span>,<span class="string">'NE actual'</span>,<span class="string">'IL model'</span>,<span class="string">'NE model'</span>);
+</pre><img vspace="5" hspace="5" src="PS02_labor_fu194_du153_02.png" style="width:560px;height:420px;" alt=""> <h2>__________________<a name="10"></a></h2><h2>ANALYSIS<a name="11"></a></h2><h2>-- Q1<a name="12"></a></h2><p>Nebraska's plant have a more efficient training program as shown in the figure that first the direct labor was higher than Illinois but finally less than Illinois.</p><h2>-- Q2<a name="13"></a></h2><pre class="language-matlab">Training <span class="string">has</span> <span class="string">minimized</span> <span class="string">the</span> <span class="string">cost</span> <span class="string">of</span> <span class="string">labor</span> <span class="string">because</span> <span class="string">people</span> <span class="string">can</span> <span class="string">spend</span> <span class="string">less</span>
+time <span class="string">to</span> <span class="string">do</span> <span class="string">the</span> <span class="string">same</span> <span class="string">amount</span> <span class="string">work.</span>
+</pre><h2>__________________<a name="14"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="15"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+%  	...
+%
+% Assigment Information
+%   Assignment:     PS 02, Problem #2
+%   Author:         Yuefan Fu, fu194@purdue.edu
+%   Team ID:        001
+%  	Contributor:    
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% INITIALIZATION
+[a,b,c] = textread('Data_direct_labor_costs.txt','%d%d%d','headerlines',1)
+A=[a,b,c]
+
+%% ____________________
+%% CALCULATIONS
+Model1 = 61 * a.^(-0.5)
+Model2 = 75 * a.^(-0.62)
+%% ____________________
+%% MODEL SMOOTHNESS CHECK
+smoothA = [1:20]
+smoothM1=61*smoothA.^(-0.5)
+plot(smoothA,smoothM1);
+title('Direct labor hours for the Illinois plant')
+xlabel('Cumulative Number of Units')
+ylabel( 'Manufactured Illinois Plant Direct Labor (Hours/Unit)')
+grid on
+
+
+%% ____________________
+%% FORMATTED FIGURES 
+smoothM2=75*smoothA.^(-0.62);
+plot(a,b,'^',a,c,'o',smoothA,smoothM1,smoothA,smoothM2);
+title('Direct labor hours for the Illinois plant')
+xlabel('Cumulative Number of Units')
+ylabel( 'Manufactured Plant Direct Labor (Hours/Unit)')
+legend('IL actual','NE actual','IL model','NE model');
+
+
+%% ____________________
+%% ANALYSIS
+
+%% REPLACE_WITH_DASH_DASH Q1
+% Nebraska's plant have a more efficient training program as shown in the
+% figure that first the direct labor was higher than Illinois but finally
+% less than Illinois. 
+
+%% REPLACE_WITH_DASH_DASH Q2
+%   Training has minimized the cost of labor because people can spend less
+%   time to do the same amount work. 
+
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+
+
+##### SOURCE END #####
+--></body></html>

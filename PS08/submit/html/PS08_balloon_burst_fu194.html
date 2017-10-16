@@ -1,0 +1,337 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PS08_balloon_burst_fu194</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-16"><meta name="DC.source" content="PS08_balloon_burst_fu194.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">__________________</a></li><li><a href="#4">LOOP INITIALIZATION</a></li><li><a href="#5">__________________</a></li><li><a href="#6">LOOP STRUCTURE</a></li><li><a href="#7">__________________</a></li><li><a href="#8">COMMAND WINDOW OUTPUT</a></li><li><a href="#9">__________________</a></li><li><a href="#10">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> PS08_balloon_burst_fu194(fillDia,burstDia)
+</pre><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">% given using binary search,Calculate the burst altitude of the balloon to the nearest 0.5 kilometer using a looping structure. Use</span>
+<span class="comment">% USAtmos_1976.p to determine the necessary atmospheric pressure and temperature</span>
+<span class="comment">%</span>
+<span class="comment">% Function Call</span>
+<span class="comment">% function PS08_balloon_burst_fu194(fillDia,burstDia)</span>
+<span class="comment">%</span>
+<span class="comment">% Input Arguments</span>
+<span class="comment">% double fillDia - initial diameter of balloon</span>
+<span class="comment">% double burstDia - expected burst diameter</span>
+<span class="comment">%</span>
+<span class="comment">% Output Arguments</span>
+<span class="comment">% none</span>
+<span class="comment">%</span>
+<span class="comment">% Assignment Information</span>
+<span class="comment">%   Assignment:       	PS 08, Problem 3</span>
+<span class="comment">%   Author:             Yuefan Fu, fu194@purdue.edu</span>
+<span class="comment">%   Team ID:            001-05</span>
+<span class="comment">%  	Contributor: 		Name, login@purdue [repeat for each]</span>
+<span class="comment">%did you complete the assignment information? delete this line if yes</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="3"></a></h2><h2>LOOP INITIALIZATION<a name="4"></a></h2><pre class="codeinput"><span class="comment">%initialize low and hign limit and count</span>
+lowLim=0;
+highLim=86;
+count=0;
+<span class="comment">%calcualte pressure and temperature when launch</span>
+[P0,T0]=USAtmos_1976(0);
+mid=(highLim+lowLim)/2;
+[midP,midT]=USAtmos_1976(mid);
+tempDia=fillDia*(P0*midT/midP/T0)^(1/3);
+</pre><h2>__________________<a name="5"></a></h2><h2>LOOP STRUCTURE<a name="6"></a></h2><pre class="codeinput"><span class="comment">%binary search</span>
+<span class="keyword">while</span>(highLim-lowLim&gt;=0.5)<span class="comment">%assign precision level to 0.5km</span>
+    <span class="keyword">if</span>(tempDia&lt;=burstDia)
+        <span class="comment">%update lower limit</span>
+        lowLim=mid;
+    <span class="keyword">else</span>
+        <span class="comment">%update higher limit</span>
+        highLim=mid;
+    <span class="keyword">end</span>
+    <span class="comment">%update mid point</span>
+    mid=(highLim+lowLim)/2;
+    <span class="comment">%calculate diameter at altitude mid point</span>
+    [midP,midT]=USAtmos_1976(mid);
+    tempDia=fillDia*(P0*midT/midP/T0)^(1/3);
+    <span class="comment">%uodate count</span>
+    count=count+1;
+    <span class="comment">%print result in each iteration</span>
+    fprintf(<span class="string">'iterate count is %d\nAltitude is %.1f km\natm pressure is %.2f kPa\natm temperature is %.2f K\nballoon diameter is %.2f m\n\n'</span>,count,mid,midP,midT,tempDia)
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">iterate count is 1
+Altitude is 21.5 km
+atm pressure is 4.32 kPa
+atm temperature is 218.15 K
+balloon diameter is 5.48 m
+
+iterate count is 2
+Altitude is 32.3 km
+atm pressure is 0.84 kPa
+atm temperature is 229.35 K
+balloon diameter is 9.63 m
+
+iterate count is 3
+Altitude is 37.6 km
+atm pressure is 0.39 kPa
+atm temperature is 244.40 K
+balloon diameter is 12.74 m
+
+iterate count is 4
+Altitude is 40.3 km
+atm pressure is 0.27 kPa
+atm temperature is 251.93 K
+balloon diameter is 14.56 m
+
+iterate count is 5
+Altitude is 39.0 km
+atm pressure is 0.32 kPa
+atm temperature is 248.16 K
+balloon diameter is 13.62 m
+
+iterate count is 6
+Altitude is 38.3 km
+atm pressure is 0.35 kPa
+atm temperature is 246.28 K
+balloon diameter is 13.18 m
+
+iterate count is 7
+Altitude is 38.0 km
+atm pressure is 0.37 kPa
+atm temperature is 245.34 K
+balloon diameter is 12.96 m
+
+iterate count is 8
+Altitude is 38.1 km
+atm pressure is 0.36 kPa
+atm temperature is 245.81 K
+balloon diameter is 13.06 m
+
+</pre><h2>__________________<a name="7"></a></h2><h2>COMMAND WINDOW OUTPUT<a name="8"></a></h2><pre class="codeinput"><span class="comment">%PS08_balloon_burst_fu194(1.2,4.2)</span>
+<span class="comment">%iterate count is 1</span>
+<span class="comment">%Altitude is 21.5 km</span>
+<span class="comment">%atm pressure is 4.32 kPa</span>
+<span class="comment">%atm temperature is 218.15 K</span>
+<span class="comment">%balloon diameter is 3.13 m</span>
+<span class="comment">%</span>
+<span class="comment">%iterate count is 2</span>
+<span class="comment">%Altitude is 32.3 km</span>
+<span class="comment">%atm pressure is 0.84 kPa</span>
+<span class="comment">%atm temperature is 229.35 K</span>
+<span class="comment">%balloon diameter is 5.50 m</span>
+<span class="comment">%</span>
+<span class="comment">%iterate count is 3</span>
+<span class="comment">%Altitude is 26.9 km</span>
+<span class="comment">%atm pressure is 1.88 kPa</span>
+<span class="comment">%atm temperature is 223.53 K</span>
+<span class="comment">%balloon diameter is 4.16 m</span>
+<span class="comment">%</span>
+<span class="comment">%iterate count is 4</span>
+<span class="comment">%Altitude is 29.6 km</span>
+<span class="comment">%atm pressure is 1.25 kPa</span>
+<span class="comment">%atm temperature is 226.21 K</span>
+<span class="comment">%balloon diameter is 4.79 m</span>
+<span class="comment">%</span>
+<span class="comment">% iterate count is 5</span>
+<span class="comment">% Altitude is 28.2 km</span>
+<span class="comment">% atm pressure is 1.53 kPa</span>
+<span class="comment">% atm temperature is 224.87 K</span>
+<span class="comment">% balloon diameter is 4.47 m</span>
+<span class="comment">%</span>
+<span class="comment">% iterate count is 6</span>
+<span class="comment">% Altitude is 27.5 km</span>
+<span class="comment">% atm pressure is 1.70 kPa</span>
+<span class="comment">% atm temperature is 224.20 K</span>
+<span class="comment">% balloon diameter is 4.31 m</span>
+<span class="comment">%</span>
+<span class="comment">% iterate count is 7</span>
+<span class="comment">% Altitude is 27.2 km</span>
+<span class="comment">% atm pressure is 1.79 kPa</span>
+<span class="comment">% atm temperature is 223.86 K</span>
+<span class="comment">% balloon diameter is 4.24 m</span>
+<span class="comment">%</span>
+<span class="comment">% iterate count is 8</span>
+<span class="comment">% Altitude is 27.0 km</span>
+<span class="comment">% atm pressure is 1.83 kPa</span>
+<span class="comment">% atm temperature is 223.69 K</span>
+<span class="comment">% balloon diameter is 4.20 m</span>
+</pre><h2>__________________<a name="9"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="10"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><pre class="codeinput"><span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function PS08_balloon_burst_fu194(fillDia,burstDia)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+% given using binary search,Calculate the burst altitude of the balloon to the nearest 0.5 kilometer using a looping structure. Use
+% USAtmos_1976.p to determine the necessary atmospheric pressure and temperature
+%
+% Function Call
+% function PS08_balloon_burst_fu194(fillDia,burstDia)
+%
+% Input Arguments
+% double fillDia - initial diameter of balloon
+% double burstDia - expected burst diameter
+%
+% Output Arguments
+% none
+%
+% Assignment Information
+%   Assignment:       	PS 08, Problem 3
+%   Author:             Yuefan Fu, fu194@purdue.edu
+%   Team ID:            001-05      
+%  	Contributor: 		Name, login@purdue [repeat for each]
+%did you complete the assignment information? delete this line if yes
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% LOOP INITIALIZATION
+%initialize low and hign limit and count
+lowLim=0;
+highLim=86;
+count=0;
+%calcualte pressure and temperature when launch
+[P0,T0]=USAtmos_1976(0);
+mid=(highLim+lowLim)/2;
+[midP,midT]=USAtmos_1976(mid);
+tempDia=fillDia*(P0*midT/midP/T0)^(1/3);
+%% ____________________
+%% LOOP STRUCTURE
+%binary search
+while(highLim-lowLim>=0.5)%assign precision level to 0.5km
+    if(tempDia<=burstDia)
+        %update lower limit
+        lowLim=mid;
+    else
+        %update higher limit
+        highLim=mid;
+    end
+    %update mid point
+    mid=(highLim+lowLim)/2;
+    %calculate diameter at altitude mid point
+    [midP,midT]=USAtmos_1976(mid);
+    tempDia=fillDia*(P0*midT/midP/T0)^(1/3);
+    %uodate count
+    count=count+1;
+    %print result in each iteration
+    fprintf('iterate count is %d\nAltitude is %.1f km\natm pressure is %.2f kPa\natm temperature is %.2f K\nballoon diameter is %.2f m\n\n',count,mid,midP,midT,tempDia)
+end
+%% ____________________
+%% COMMAND WINDOW OUTPUT
+%PS08_balloon_burst_fu194(1.2,4.2)
+%iterate count is 1
+%Altitude is 21.5 km
+%atm pressure is 4.32 kPa
+%atm temperature is 218.15 K
+%balloon diameter is 3.13 m
+%
+%iterate count is 2
+%Altitude is 32.3 km
+%atm pressure is 0.84 kPa
+%atm temperature is 229.35 K
+%balloon diameter is 5.50 m
+%
+%iterate count is 3
+%Altitude is 26.9 km
+%atm pressure is 1.88 kPa
+%atm temperature is 223.53 K
+%balloon diameter is 4.16 m
+%
+%iterate count is 4
+%Altitude is 29.6 km
+%atm pressure is 1.25 kPa
+%atm temperature is 226.21 K
+%balloon diameter is 4.79 m
+% 
+% iterate count is 5
+% Altitude is 28.2 km
+% atm pressure is 1.53 kPa
+% atm temperature is 224.87 K
+% balloon diameter is 4.47 m
+% 
+% iterate count is 6
+% Altitude is 27.5 km
+% atm pressure is 1.70 kPa
+% atm temperature is 224.20 K
+% balloon diameter is 4.31 m
+% 
+% iterate count is 7
+% Altitude is 27.2 km
+% atm pressure is 1.79 kPa
+% atm temperature is 223.86 K
+% balloon diameter is 4.24 m
+% 
+% iterate count is 8
+% Altitude is 27.0 km
+% atm pressure is 1.83 kPa
+% atm temperature is 223.69 K
+% balloon diameter is 4.20 m
+
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+end
+
+##### SOURCE END #####
+--></body></html>

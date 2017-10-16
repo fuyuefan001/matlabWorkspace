@@ -1,0 +1,230 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PS08_taylor_cos_fu194</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-11"><meta name="DC.source" content="PS08_taylor_cos_fu194.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">__________________</a></li><li><a href="#4">INITIALIZATION</a></li><li><a href="#5">__________________</a></li><li><a href="#6">CALCULATIONS</a></li><li><a href="#7">__________________</a></li><li><a href="#8">COMMAND WINDOW OUTPUT</a></li><li><a href="#9">__________________</a></li><li><a href="#10">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span> [count,taylor,diff]=PS08_taylor_cos_fu194(numIn,tol)
+</pre><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">% using taylor formula to calculate approximate value of cos.</span>
+<span class="comment">%</span>
+<span class="comment">%Function Call</span>
+<span class="comment">% [count,taylor,diff]=PS08_taylor_cos_fu194(numIn,tol)</span>
+<span class="comment">%</span>
+<span class="comment">% Input Arguments</span>
+<span class="comment">% double numIn - num input for calculate cos</span>
+<span class="comment">% double tol - tolerance of the last term</span>
+<span class="comment">% Output Arguments</span>
+<span class="comment">% double taylor - approximate cos result calculated</span>
+<span class="comment">% int count - number of terms</span>
+<span class="comment">% double diff - difference between the calculated approximat cos and real</span>
+<span class="comment">% value</span>
+<span class="comment">%</span>
+<span class="comment">% Assignment Information</span>
+<span class="comment">%   Assignment:       	PS 08, Problem 2</span>
+<span class="comment">%   Author:             Yuefan Fu, fu194@purdue.edu</span>
+<span class="comment">%   Team ID:            001-05</span>
+<span class="comment">%  	Contributor: 		Name, login@purdue [repeat for each]</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="3"></a></h2><h2>INITIALIZATION<a name="4"></a></h2><pre class="codeinput"><span class="comment">%initialize default output value</span>
+taylor=NaN;
+count=0;
+diff=NaN;
+</pre><h2>__________________<a name="5"></a></h2><h2>CALCULATIONS<a name="6"></a></h2><pre class="codeinput">dem=size(numIn);
+<span class="keyword">if</span>(dem(1)~=1||dem(2)~=1)<span class="comment">%check if is Scaler</span>
+    fprintf(<span class="string">'error: invalid x'</span>);
+    <span class="keyword">return</span>;
+<span class="keyword">elseif</span>(tol&lt;=0||tol&gt;=1)<span class="comment">%check tolerence</span>
+    fprintf(<span class="string">'error: invalid tolerance'</span>)
+    <span class="keyword">return</span>;
+<span class="keyword">else</span>
+    taylor=0;
+    count=0;
+    <span class="comment">%calculate approxmate cos</span>
+    <span class="keyword">while</span>(abs((-1)^(count)*numIn^(2*count)/factorial(count*2))&gt;tol)
+        taylor=taylor+(-1)^(count)*numIn^(2*count)/factorial(count*2);
+        count=count+1;
+        <span class="comment">%fprintf('%.4f\n',taylor);</span>
+    <span class="keyword">end</span>
+    <span class="comment">%calculate difference</span>
+    diff=abs(cos(numIn)-taylor);
+<span class="keyword">end</span>
+</pre><h2>__________________<a name="7"></a></h2><h2>COMMAND WINDOW OUTPUT<a name="8"></a></h2><pre class="codeinput"><span class="comment">%[x,y,z]=PS08_taylor_cos_fu194(2,0.001)</span>
+<span class="comment">%x =</span>
+<span class="comment">%     5</span>
+<span class="comment">%y =</span>
+<span class="comment">%   -0.4159</span>
+<span class="comment">%z =</span>
+<span class="comment">%   2.7382e-04</span>
+
+<span class="comment">%[x,y,z]=PS08_taylor_cos_fu194(pi,0.001)</span>
+<span class="comment">%x =</span>
+<span class="comment">%     7</span>
+<span class="comment">%y =</span>
+<span class="comment">%   -0.9999</span>
+<span class="comment">%z =</span>
+<span class="comment">%   1.0047e-04</span>
+</pre><h2>__________________<a name="9"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="10"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><pre class="codeinput"><span class="keyword">end</span>
+</pre><pre class="codeoutput">
+count =
+
+     5
+
+
+taylor =
+
+   -0.4159
+
+
+diff =
+
+   2.7382e-04
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function [count,taylor,diff]=PS08_taylor_cos_fu194(numIn,tol)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+% using taylor formula to calculate approximate value of cos.
+% 
+%Function Call
+% [count,taylor,diff]=PS08_taylor_cos_fu194(numIn,tol)
+%
+% Input Arguments
+% double numIn - num input for calculate cos
+% double tol - tolerance of the last term
+% Output Arguments
+% double taylor - approximate cos result calculated
+% int count - number of terms 
+% double diff - difference between the calculated approximat cos and real
+% value
+%
+% Assignment Information
+%   Assignment:       	PS 08, Problem 2
+%   Author:             Yuefan Fu, fu194@purdue.edu
+%   Team ID:            001-05      
+%  	Contributor: 		Name, login@purdue [repeat for each]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% INITIALIZATION
+%initialize default output value
+taylor=NaN;
+count=0;
+diff=NaN;
+
+%% ____________________
+%% CALCULATIONS
+dem=size(numIn);
+if(dem(1)~=1||dem(2)~=1)%check if is Scaler
+    fprintf('error: invalid x');
+    return;
+elseif(tol<=0||tol>=1)%check tolerence
+    fprintf('error: invalid tolerance')
+    return;
+else
+    taylor=0;
+    count=0;
+    %calculate approxmate cos
+    while(abs((-1)^(count)*numIn^(2*count)/factorial(count*2))>tol)
+        taylor=taylor+(-1)^(count)*numIn^(2*count)/factorial(count*2);
+        count=count+1;
+        %fprintf('%.4f\n',taylor);
+    end
+    %calculate difference
+    diff=abs(cos(numIn)-taylor);
+end
+
+%% ____________________
+%% COMMAND WINDOW OUTPUT
+
+%[x,y,z]=PS08_taylor_cos_fu194(2,0.001)
+%x =
+%     5
+%y =
+%   -0.4159
+%z =
+%   2.7382e-04
+
+%[x,y,z]=PS08_taylor_cos_fu194(pi,0.001)
+%x =
+%     7
+%y =
+%   -0.9999
+%z =
+%   1.0047e-04
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+end
+
+##### SOURCE END #####
+--></body></html>

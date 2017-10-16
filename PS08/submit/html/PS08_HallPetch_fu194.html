@@ -1,0 +1,271 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>PS08_HallPetch_fu194</title><meta name="generator" content="MATLAB 8.6"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-10-15"><meta name="DC.source" content="PS08_HallPetch_fu194.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#3">__________________</a></li><li><a href="#4">INITIALIZATION</a></li><li><a href="#5">__________________</a></li><li><a href="#6">CALCULATIONS</a></li><li><a href="#7">__________________</a></li><li><a href="#8">COMMAND WINDOW OUTPUT</a></li><li><a href="#9">__________________</a></li><li><a href="#10">ACADEMIC INTEGRITY STATEMENT</a></li></ul></div><pre class="codeinput"><span class="keyword">function</span>  PS08_HallPetch_fu194(metel,gsIn)
+</pre><pre class="codeinput"><span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+<span class="comment">% ENGR 132</span>
+<span class="comment">% Program Description</span>
+<span class="comment">% import data about metel from csv file</span>
+<span class="comment">% calculate regression line of each  metel</span>
+<span class="comment">% print the predicted yield stress of given metel and given grain size</span>
+<span class="comment">%</span>
+<span class="comment">% Function Call</span>
+<span class="comment">% PS08_HallPetch_fu194(metel,gsIn)</span>
+<span class="comment">%</span>
+<span class="comment">% Input Arguments</span>
+<span class="comment">% String metel - element sign of metel</span>
+<span class="comment">% double gsIn - grain size input</span>
+<span class="comment">%</span>
+<span class="comment">% Output Arguments</span>
+<span class="comment">% none</span>
+<span class="comment">%</span>
+<span class="comment">% Assignment Information</span>
+<span class="comment">%   Assignment:       	PS 08, Problem 1</span>
+<span class="comment">%   Author:             Yuefan Fu, fu194@purdue.edu</span>
+<span class="comment">%   Team ID:            001-05</span>
+<span class="comment">%  	Contributor: 		Name, login@purdue [repeat for each]</span>
+<span class="comment">%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%</span>
+</pre><h2>__________________<a name="3"></a></h2><h2>INITIALIZATION<a name="4"></a></h2><pre class="codeinput"><span class="comment">%metel='Cu';</span>
+<span class="comment">%gsIn=10000;</span>
+<span class="comment">%import data from csv file</span>
+allData=importdata(<span class="string">'Data_material_grainsz_yieldstress.csv'</span>);
+numData=allData.data;
+sampleSize=size(numData);
+<span class="comment">%initialize variables that will be updated in loops</span>
+count1=1;
+grainSize=[];
+yieldstress=[];
+elementList=[];
+</pre><h2>__________________<a name="5"></a></h2><h2>CALCULATIONS<a name="6"></a></h2><pre class="codeinput"><span class="keyword">while</span>(count1&lt;=sampleSize(2))
+    sampleSize=size(numData);
+    <span class="keyword">if</span>(mod(count1,2)==1)
+        <span class="comment">%get grain size from number data</span>
+        grainSize=[grainSize,numData(:,count1)];
+        <span class="comment">%parse element sign from the text cell</span>
+        elementList=[elementList,strtok(allData.textdata(count1),<span class="string">':'</span>)];
+    <span class="keyword">else</span>
+        <span class="comment">%get yield stress from number data</span>
+        yieldstress=[yieldstress,numData(:,count1)];
+    <span class="keyword">end</span>
+    count1=count1+1;
+<span class="keyword">end</span>
+count2=1;
+coefReg=[];
+<span class="comment">%calculate the regression line for each metel in database</span>
+<span class="keyword">while</span>(count2&lt;=sampleSize(2)/2)
+    tempX=grainSize(:,count2);
+    noNaNX=tempX(~isnan(tempX));
+    tempY=yieldstress(:,count2);
+    noNaNY=tempY(~isnan(tempY));
+    [out1,out2,out3]=PS06_regressionUDF_fu194(noNaNX.^(-1/2),noNaNY);
+    coefReg=[coefReg;[out1,out2,out3]];
+    count2=count2+1;
+<span class="keyword">end</span>
+<span class="comment">%check if the metel given in the database</span>
+elementTag=strcmp(elementList,metel);
+<span class="keyword">if</span>(sum(elementTag)~=1)
+    fprintf(<span class="string">'WARNING: metel is not found in database, result for Fe will be shown\n'</span>);
+    metel=<span class="string">'Fe'</span>;
+    elementTag=strcmp(elementList,metel);
+<span class="keyword">end</span>
+metelIndex=find(strcmp(elementList,metel));
+fprintf(<span class="string">'regression line is yieldStress = %.2f grainSize + %.2f ,with coefficient of determination = %.2f\n'</span>,coefReg(metelIndex,:));
+<span class="comment">%calculate the predicted yield stress</span>
+result=coefReg(metelIndex,1)*gsIn^(-1/2)+coefReg(metelIndex,2);
+fprintf(<span class="string">'predicted yield streed for metel %s is %.3f\n'</span>,metel,result);
+<span class="comment">%check if the grain size is out of range</span>
+curGrainSize=(grainSize(:,elementTag));
+<span class="keyword">if</span>(gsIn&lt;min(curGrainSize)||gsIn&gt;max(curGrainSize))
+    fprintf(<span class="string">'WARNING: the grain size input is out of range of data %s\n'</span>,metel);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">regression line is yieldStress = 143.25 grainSize + 16.23 ,with coefficient of determination = 1.00
+predicted yield streed for metel Cu is 30.560
+</pre><h2>__________________<a name="7"></a></h2><h2>COMMAND WINDOW OUTPUT<a name="8"></a></h2><pre class="codeinput"><span class="comment">%PS08_HallPetch_fu194('Fe',100)</span>
+<span class="comment">%regression line is yieldStress = 672.84 grainSize + 49.72 ,with coefficient of determination = 0.80</span>
+<span class="comment">%predicted yield streed for metel Fe is 117.002</span>
+
+<span class="comment">%PS08_HallPetch_fu194('Na',100)</span>
+<span class="comment">%WARNING: metel is not found in database, result for Fe will be shown</span>
+<span class="comment">%regression line is yieldStress = 672.84 grainSize + 49.72 ,with coefficient of determination = 0.80</span>
+<span class="comment">%predicted yield streed for metel Fe is 117.002</span>
+
+<span class="comment">%PS08_HallPetch_fu194('V',300000)</span>
+<span class="comment">%regression line is yieldStress = 268.79 grainSize + 206.03 ,with coefficient of determination = 0.73</span>
+<span class="comment">%predicted yield streed for metel V is 206.521</span>
+<span class="comment">%WARNING: the grain size input is out of range of data V</span>
+</pre><h2>__________________<a name="9"></a></h2><h2>ACADEMIC INTEGRITY STATEMENT<a name="10"></a></h2><p>I/We have not used source code obtained from any other unauthorized source, either modified or unmodified.  Neither have I/we provided access to my/our code to another. The project I/we am/are submitting is my/our own original work.</p><pre class="codeinput"><span class="keyword">end</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2015b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+function  PS08_HallPetch_fu194(metel,gsIn)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ENGR 132 
+% Program Description 
+% import data about metel from csv file
+% calculate regression line of each  metel
+% print the predicted yield stress of given metel and given grain size
+%
+% Function Call
+% PS08_HallPetch_fu194(metel,gsIn)
+%
+% Input Arguments
+% String metel - element sign of metel
+% double gsIn - grain size input
+%
+% Output Arguments
+% none
+%
+% Assignment Information
+%   Assignment:       	PS 08, Problem 1
+%   Author:             Yuefan Fu, fu194@purdue.edu
+%   Team ID:            001-05      
+%  	Contributor: 		Name, login@purdue [repeat for each]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% ____________________
+%% INITIALIZATION
+%metel='Cu';
+%gsIn=10000;
+%import data from csv file 
+allData=importdata('Data_material_grainsz_yieldstress.csv');
+numData=allData.data;
+sampleSize=size(numData);
+%initialize variables that will be updated in loops
+count1=1;
+grainSize=[];
+yieldstress=[];
+elementList=[];
+%% ____________________
+%% CALCULATIONS
+while(count1<=sampleSize(2))
+    sampleSize=size(numData);
+    if(mod(count1,2)==1)
+        %get grain size from number data
+        grainSize=[grainSize,numData(:,count1)];
+        %parse element sign from the text cell
+        elementList=[elementList,strtok(allData.textdata(count1),':')];
+    else
+        %get yield stress from number data
+        yieldstress=[yieldstress,numData(:,count1)];
+    end
+    count1=count1+1;
+end
+count2=1;
+coefReg=[];
+%calculate the regression line for each metel in database
+while(count2<=sampleSize(2)/2)
+    tempX=grainSize(:,count2);
+    noNaNX=tempX(~isnan(tempX));
+    tempY=yieldstress(:,count2);
+    noNaNY=tempY(~isnan(tempY));
+    [out1,out2,out3]=PS06_regressionUDF_fu194(noNaNX.^(-1/2),noNaNY);
+    coefReg=[coefReg;[out1,out2,out3]];
+    count2=count2+1;
+end
+%check if the metel given in the database
+elementTag=strcmp(elementList,metel);
+if(sum(elementTag)~=1)
+    fprintf('WARNING: metel is not found in database, result for Fe will be shown\n');
+    metel='Fe';
+    elementTag=strcmp(elementList,metel);
+end
+metelIndex=find(strcmp(elementList,metel));
+fprintf('regression line is yieldStress = %.2f grainSize + %.2f ,with coefficient of determination = %.2f\n',coefReg(metelIndex,:));
+%calculate the predicted yield stress
+result=coefReg(metelIndex,1)*gsIn^(-1/2)+coefReg(metelIndex,2);
+fprintf('predicted yield streed for metel %s is %.3f\n',metel,result);
+%check if the grain size is out of range
+curGrainSize=(grainSize(:,elementTag));
+if(gsIn<min(curGrainSize)||gsIn>max(curGrainSize))
+    fprintf('WARNING: the grain size input is out of range of data %s\n',metel);
+end
+%% ____________________
+%% COMMAND WINDOW OUTPUT
+%PS08_HallPetch_fu194('Fe',100)
+%regression line is yieldStress = 672.84 grainSize + 49.72 ,with coefficient of determination = 0.80
+%predicted yield streed for metel Fe is 117.002
+
+%PS08_HallPetch_fu194('Na',100)
+%WARNING: metel is not found in database, result for Fe will be shown
+%regression line is yieldStress = 672.84 grainSize + 49.72 ,with coefficient of determination = 0.80
+%predicted yield streed for metel Fe is 117.002
+
+%PS08_HallPetch_fu194('V',300000)
+%regression line is yieldStress = 268.79 grainSize + 206.03 ,with coefficient of determination = 0.73
+%predicted yield streed for metel V is 206.521
+%WARNING: the grain size input is out of range of data V
+%% ____________________
+%% ACADEMIC INTEGRITY STATEMENT
+% I/We have not used source code obtained from any other unauthorized
+% source, either modified or unmodified.  Neither have I/we provided
+% access to my/our code to another. The project I/we am/are submitting
+% is my/our own original work.
+end
+
+
+##### SOURCE END #####
+--></body></html>
